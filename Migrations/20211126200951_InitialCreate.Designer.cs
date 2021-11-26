@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aluguel.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20211126114811_alteracaoClasseEMapcolaborador")]
-    partial class alteracaoClasseEMapcolaborador
+    [Migration("20211126200951_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -39,6 +39,12 @@ namespace Aluguel.Migrations
 
                     b.Property<DateTime>("Data_devolucao")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("NomeCliente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeColaborador")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Valor")
                         .HasColumnType("real");
@@ -137,21 +143,17 @@ namespace Aluguel.Migrations
 
             modelBuilder.Entity("Aluguel.Models.Dominio.Aluga", b =>
                 {
-                    b.HasOne("Aluguel.Models.Dominio.Cliente", "NomeCliente")
+                    b.HasOne("Aluguel.Models.Dominio.Cliente", null)
                         .WithMany("Alugueis")
                         .HasForeignKey("ClienteID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Aluguel.Models.Dominio.Colaborador", "NomeColaborador")
+                    b.HasOne("Aluguel.Models.Dominio.Colaborador", null)
                         .WithMany("Alugueis")
                         .HasForeignKey("ColaboradorID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("NomeCliente");
-
-                    b.Navigation("NomeColaborador");
                 });
 
             modelBuilder.Entity("Aluguel.Models.Dominio.Cliente", b =>

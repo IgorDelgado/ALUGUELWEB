@@ -13,13 +13,16 @@ namespace Aluguel.Models.Dominio
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "ID")]
         public int ID { get; set; }
-        public  Cliente NomeCliente{ get; set; }
-        public int ClienteID { get; set; }
+        public string NomeCliente { get; set; }
+        public string Tamanho { get; set; }
+        public string Codigo { get; set; }
+        public string Observacao { get; set; }
         public DateTime Data_aluguel { get; set; }
         public DateTime Data_devolucao { get; set; }
         public float Valor { get; set; }
-        public Colaborador NomeColaborador { get; set; }
-        public int ColaboradorID { get; set; }
+        public string NomeColaborador { get; set; }
+        
+        public string Cacamba { get; }        
 
     }
 }

@@ -14,8 +14,24 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ClienteID" class="control-label"></label>
-                <select asp-for="ClienteID" class ="form-control" asp-items="ViewBag.ClienteID"></select>
+                <label asp-for="NomeCliente" class="control-label"></label>
+                <input asp-for="NomeCliente" class="form-control" />
+                <span asp-validation-for="NomeCliente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tamanho" class="control-label"></label>
+                <input asp-for="Tamanho" class="form-control" />
+                <span asp-validation-for="Tamanho" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Codigo" class="control-label"></label>
+                <input asp-for="Codigo" class="form-control" />
+                <span asp-validation-for="Codigo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observacao" class="control-label"></label>
+                <input asp-for="Observacao" class="form-control" />
+                <span asp-validation-for="Observacao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Data_aluguel" class="control-label"></label>
@@ -33,8 +49,9 @@
                 <span asp-validation-for="Valor" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ColaboradorID" class="control-label"></label>
-                <select asp-for="ColaboradorID" class ="form-control" asp-items="ViewBag.ColaboradorID"></select>
+                <label asp-for="NomeColaborador" class="control-label"></label>
+                <input asp-for="NomeColaborador" class="form-control" />
+                <span asp-validation-for="NomeColaborador" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

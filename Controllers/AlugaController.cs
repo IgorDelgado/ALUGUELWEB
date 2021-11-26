@@ -22,8 +22,7 @@ namespace Aluguel.Controllers
         // GET: Aluga
         public async Task<IActionResult> Index()
         {
-            var contexto = _context.Alugueis.Include(a => a.NomeCliente).Include(a => a.NomeColaborador);
-            return View(await contexto.ToListAsync());
+            return View(await _context.Alugueis.ToListAsync());
         }
 
         // GET: Aluga/Details/5
@@ -35,8 +34,6 @@ namespace Aluguel.Controllers
             }
 
             var aluga = await _context.Alugueis
-                .Include(a => a.NomeCliente)
-                .Include(a => a.NomeColaborador)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (aluga == null)
             {
@@ -49,8 +46,6 @@ namespace Aluguel.Controllers
         // GET: Aluga/Create
         public IActionResult Create()
         {
-            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ID", "Contato");
-            ViewData["ColaboradorID"] = new SelectList(_context.Colaboradores, "ID", "Funcao");
             return View();
         }
 
@@ -59,7 +54,7 @@ namespace Aluguel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,ClienteID,Data_aluguel,Data_devolucao,Valor,ColaboradorID")] Aluga aluga)
+        public async Task<IActionResult> Create([Bind("ID,NomeCliente,Tamanho,Codigo,Observacao,Data_aluguel,Data_devolucao,Valor,NomeColaborador")] Aluga aluga)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +62,6 @@ namespace Aluguel.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ID", "Contato", aluga.ClienteID);
-            ViewData["ColaboradorID"] = new SelectList(_context.Colaboradores, "ID", "Funcao", aluga.ColaboradorID);
             return View(aluga);
         }
 
@@ -85,8 +78,6 @@ namespace Aluguel.Controllers
             {
                 return NotFound();
             }
-            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ID", "Contato", aluga.ClienteID);
-            ViewData["ColaboradorID"] = new SelectList(_context.Colaboradores, "ID", "Funcao", aluga.ColaboradorID);
             return View(aluga);
         }
 
@@ -95,7 +86,7 @@ namespace Aluguel.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,ClienteID,Data_aluguel,Data_devolucao,Valor,ColaboradorID")] Aluga aluga)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,NomeCliente,Tamanho,Codigo,Observacao,Data_aluguel,Data_devolucao,Valor,NomeColaborador")] Aluga aluga)
         {
             if (id != aluga.ID)
             {
@@ -122,8 +113,6 @@ namespace Aluguel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ClienteID"] = new SelectList(_context.Clientes, "ID", "Contato", aluga.ClienteID);
-            ViewData["ColaboradorID"] = new SelectList(_context.Colaboradores, "ID", "Funcao", aluga.ColaboradorID);
             return View(aluga);
         }
 
@@ -136,8 +125,6 @@ namespace Aluguel.Controllers
             }
 
             var aluga = await _context.Alugueis
-                .Include(a => a.NomeCliente)
-                .Include(a => a.NomeColaborador)
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (aluga == null)
             {

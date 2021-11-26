@@ -48,7 +48,7 @@ namespace Aluguel.Migrations
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Funcao = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Funcao = table.Column<string>(type: "nvarchar(35)", maxLength: 35, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,10 +61,12 @@ namespace Aluguel.Migrations
                 {
                     ID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    NomeCliente = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ClienteID = table.Column<int>(type: "int", nullable: false),
                     Data_aluguel = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Data_devolucao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Valor = table.Column<float>(type: "real", nullable: false),
+                    NomeColaborador = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ColaboradorID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

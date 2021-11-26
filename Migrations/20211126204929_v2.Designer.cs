@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Aluguel.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20211126114517_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20211126204929_v2")]
+    partial class v2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,10 +28,13 @@ namespace Aluguel.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("ClienteID")
+                    b.Property<int?>("ClienteID")
                         .HasColumnType("int");
 
-                    b.Property<int>("ColaboradorID")
+                    b.Property<string>("Codigo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ColaboradorID")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("Data_aluguel")
@@ -39,6 +42,18 @@ namespace Aluguel.Migrations
 
                     b.Property<DateTime>("Data_devolucao")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("NomeCliente")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NomeColaborador")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Observacao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Tamanho")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Valor")
                         .HasColumnType("real");
@@ -123,7 +138,9 @@ namespace Aluguel.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Funcao")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(35)
+                        .HasColumnType("nvarchar(35)");
 
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
@@ -135,21 +152,13 @@ namespace Aluguel.Migrations
 
             modelBuilder.Entity("Aluguel.Models.Dominio.Aluga", b =>
                 {
-                    b.HasOne("Aluguel.Models.Dominio.Cliente", "NomeCliente")
+                    b.HasOne("Aluguel.Models.Dominio.Cliente", null)
                         .WithMany("Alugueis")
-                        .HasForeignKey("ClienteID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClienteID");
 
-                    b.HasOne("Aluguel.Models.Dominio.Colaborador", "NomeColaborador")
+                    b.HasOne("Aluguel.Models.Dominio.Colaborador", null)
                         .WithMany("Alugueis")
-                        .HasForeignKey("ColaboradorID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("NomeCliente");
-
-                    b.Navigation("NomeColaborador");
+                        .HasForeignKey("ColaboradorID");
                 });
 
             modelBuilder.Entity("Aluguel.Models.Dominio.Cliente", b =>
