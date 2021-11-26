@@ -15,6 +15,7 @@ namespace Aluguel.Models.Mapeamento
             builder.HasKey(p => p.ID);
             builder.Property(p => p.ID).ValueGeneratedOnAdd();
             builder.Property(p => p.Nome).HasMaxLength(35).IsRequired();
+            builder.Property(p => p.Funcao).HasMaxLength(35).IsRequired();
 
 
             builder.HasMany(p => p.Alugueis).WithOne(p => p.NomeColaborador).HasForeignKey(p => p.ColaboradorID).OnDelete(DeleteBehavior.NoAction);

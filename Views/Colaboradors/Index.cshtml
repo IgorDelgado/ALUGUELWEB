@@ -14,13 +14,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ID)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CPF)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Funcao)
@@ -32,13 +26,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CPF)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Funcao)

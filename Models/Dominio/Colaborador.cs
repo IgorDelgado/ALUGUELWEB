@@ -13,14 +13,12 @@ namespace Aluguel.Models.Dominio
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Display(Name = "ID")]
         public int ID { get; set; }
-        [StringLength(35, ErrorMessage = "Tamanho de nome proprietario inválido", MinimumLength = 5)]
-        [Required(ErrorMessage = "Campo Nome Proprietário é obrigatório")]
-        [Display(Name = "Nome")]
+      
         public string Nome { get; set; }
-        
-        [StringLength(35, ErrorMessage = "Tamanho de nome funcao inválido", MinimumLength = 5)]
-        [Required(ErrorMessage = "Campo Função é obrigatório")]
-        [Display(Name = "Funçao")]
+
+        [StringLength(35, ErrorMessage = "Tamanho de Função inválido", MinimumLength = 5)]
+        [Required(ErrorMessage = "Campo Funcão é obrigatório")]
+        [Display(Name = "função")]
         public string Funcao { get; set; }
 
         public ICollection<Aluga> Alugueis { get; set; }

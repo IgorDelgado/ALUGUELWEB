@@ -15,6 +15,11 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ID" />
             <div class="form-group">
+                <label asp-for="ClienteID" class="control-label"></label>
+                <select asp-for="ClienteID" class="form-control" asp-items="ViewBag.ClienteID"></select>
+                <span asp-validation-for="ClienteID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Data_aluguel" class="control-label"></label>
                 <input asp-for="Data_aluguel" class="form-control" />
                 <span asp-validation-for="Data_aluguel" class="text-danger"></span>
@@ -28,6 +33,11 @@
                 <label asp-for="Valor" class="control-label"></label>
                 <input asp-for="Valor" class="form-control" />
                 <span asp-validation-for="Valor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ColaboradorID" class="control-label"></label>
+                <select asp-for="ColaboradorID" class="form-control" asp-items="ViewBag.ColaboradorID"></select>
+                <span asp-validation-for="ColaboradorID" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
