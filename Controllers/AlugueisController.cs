@@ -24,12 +24,23 @@ namespace Aluguel.Controllers
         {
 
             IEnumerable<Itens> lstItens = from item in contexto.Alugueis
-                                         .ToList()
+                                          
+
+                                           .OrderBy(id => id.ID)
+                                           .ThenBy(nome => nome.NomeCliente)
+                                           .ThenBy(Data => Data.Data_aluguel)
+
+
+                                          .ToList()
+                                         
+
                                           select new Itens
                                           {
                                               ID = item.ID,
                                               NomeCliente = item.NomeCliente,
                                               Data_aluguel = item.Data_aluguel,
+                                              Endereco = item.Endereco,
+                                              Bairro = item.Bairro,
                                               Tamanho = item.Tamanho,
                                               Codigo = item.Codigo,
                                               Observacao = item.Observacao,

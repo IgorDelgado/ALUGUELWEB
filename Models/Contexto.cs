@@ -1,5 +1,6 @@
 ﻿using Aluguel.Models.Dominio;
 using Microsoft.EntityFrameworkCore;
+using Aluguel.Models.Consulta;
 
 namespace Aluguel.Models
 {
@@ -13,6 +14,8 @@ namespace Aluguel.Models
         public DbSet<Aluga> Alugueis { get; set; }
 
         public DbSet<Colaborador> Colaboradores { get; set; }
+
+        public DbSet<Aluguel.Models.Consulta.Itens> Itens { get; set; }
 
 
     }
